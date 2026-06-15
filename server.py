@@ -53,28 +53,51 @@ except Exception as e:
     print(e)
     exit(1)
 print("WELCOME TO BANK MANAGEMENT SYSTEM")
+def line():
+    print("═" * 50)
+
+def title(text):
+    print("\n╔" + "═" * 48 + "╗")
+    print(f"║{text:^48}║")
+    print("╚" + "═" * 48 + "╝")
+
+def menu_option(num, text):
+    print(f"│ {num}. {text:<42}│")
+
+def menu():
+    title("BANK MANAGEMENT SYSTEM")
+
+    print("┌" + "─" * 48 + "┐")
+    menu_option(1, "My Account")
+    menu_option(2, "Register New Account")
+    menu_option(3, "See All Users")
+    menu_option(4, "Exit")
+    print("└" + "─" * 48 + "┘")
 while(1):
-    print("ENTER 1 FOR MY ACCOUNT")
-    print("ENTER 2 FOR REGISTERING NEW ACCOUNT")
-    print("ENTER 3 FOR SEEING ALL THE USERS")
-    print("ENTER 4 FOR EXIT")
-    choice=int(input("ENTER YOUR CHOICE"))
-    match(choice):
-     case 1:
-        my_account()
-        continue
-     case 2:
-        register_new()
+    menu()
+
+    try:
+        choice = int(input("\n➜ Enter your choice : "))
+    except ValueError:
+        print("\n Please enter a valid number.")
         continue
 
-     case 3:
-        all_users()
-        continue
-     case 4:
-       exit(1)
-     case _:
-        print("please enter a valid choice")
-        continue
+    match choice:
+        case 1:
+            my_account()
+
+        case 2:
+            register_new()
+
+        case 3:
+            all_users()
+
+        case 4:
+            print("\n Thank you for using our bank.")
+            break
+
+        case _:
+            print("\n Invalid choice.")
 if cursor is not None:
   cursor.close()
 if conn is not None:
